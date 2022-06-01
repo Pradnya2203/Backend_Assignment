@@ -323,9 +323,6 @@ router.post('/admin_func',(req, res) => {
  
 });
 
-
-
-
 function isUser (req,res,next) {
     db.query('select username from USERS where username ="'+session.userid+'";',
     (error,result,fields) => {
