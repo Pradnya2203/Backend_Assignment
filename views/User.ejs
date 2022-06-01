@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Hello! <%=user_name%></h1>
+    <form id="checkBox" action="/user" method="Post">
+        <h2>Select Books To Checkout</h2>
+        <input type="hidden" name="username" value="<%=user_name%>" >
+   
+        <table>
+            <%
+                data.forEach(function(item,index) {
+            %>    
+            
+           <tr>
+               <td>
+                <input type="checkbox" id="<%=item.name%>_<%=index%>" name="name" value="<%=item.name%>">
+                </td>
+               <td>
+                <label for="<%=item.name%>_<%index%>"><%=item.name%></label><br>
+                </td>
+                <td><%=item.status%></td>
+           </tr>
+
+           <% }) %>
+
+        </table>
+        <input type="submit" name="status" value="checkOut">
+    </form>
+    <form action="/user" method="POST">
+        <h2>Request Books</h2>
+        <input type="hidden" name="username" value="<%=user_name%>" >
+        <table>
+                
+            <%
+                data2.forEach(function(item2,index) {
+            %>    
+            <tr>
+                <td>
+                <input type="checkbox" id="<%=item2.name%>_<%=index%>" name="name" value="<%=item2.name%>">
+
+                </td>
+                <td><%=item2.number%></td>
+               <td>
+                <label for="<%=item2.name%>_<%index%>"><%=item2.name%></label><br>
+                </td>
+            </tr>
+        <% }) %>
+        </table>
+        <input type="submit" name="status" value="checkIn">
+    </form>
+
+    <form action="/index" method="GET">
+    <input type="submit" name="logout" value="Logout">
+    </form>
+
+</body>
+</html>
